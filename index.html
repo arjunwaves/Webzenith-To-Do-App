@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101323">
+
+    <title>Taskflow — Make today count</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://googleapis.com" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <main class="app-shell">
+
+        <header class="topbar">
+
+            <a class="brand" href="#">
+                <span class="brand-mark">✔</span>
+                <span>taskflow<span class="brand-dot">.</span></span>
+            </a>
+
+            <div class="topbar-right">
+                <span>YOUR PERSONAL WORKSPACE</span>
+                <img src="Arjun.png" alt="arjun.png" class="avatar">
+            </div>
+
+        </header>
+
+        <section class="welcome">
+
+            <div>
+                <p class="eyebrow" id="today-label">YOUR DAY, YOUR PACE</p>
+
+                <h1>Make today <span>count.</span></h1>
+
+                <p class="subtitle">
+                    A little progress each day adds up to big results.
+                </p>
+            </div>
+
+            <div class="date-card">
+                <span class="date-icon">◷</span>
+
+                <div>
+                    <strong id="date-text">Today</strong>
+                    <small>One step at a time</small>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="stats-grid" aria-label="Task statistics">
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>Total tasks</span>
+                    <span class="stat-icon purple">▤</span>
+                </div>
+
+                <strong id="total-count">0</strong>
+                <small>Everything on your plate</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>In progress</span>
+                    <span class="stat-icon blue">◷</span>
+                </div>
+
+                <strong id="active-count">0</strong>
+                <small>Keep the momentum going</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>Completed</span>
+                    <span class="stat-icon green">✓</span>
+                </div>
+
+                <strong id="done-count">0</strong>
+                <small>Wins worth celebrating</small>
+            </article>
+
+            <article class="stat-card progress-card">
+                <div class="stat-top">
+                    <span>Daily progress</span>
+                    <span class="progress-value" id="progress-label">0%</span>
+                </div>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+
+                <small id="progress-caption">Let's get started!</small>
+            </article>
+
+        </section>
+
+        <section class="content-grid">
+
+            <section class="panel task-panel">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <p class="eyebrow">YOUR WORKSPACE</p>
+
+                        <h2>
+                            My tasks
+                            <span class="count-pill" id="visible-count">0</span>
+                        </h2>
+                    </div>
+
+                    <button
+                        class="clear-btn"
+                        id="clear-completed"
+                        type="button"
+                    >
+                        Clear completed
+                    </button>
+
+                </div>
+
+                <div class="toolbar">
+
+                    <div class="search-wrap">
+                        <span>⌕</span>
+
+                        <input
+                            id="search-input"
+                            type="search"
+                            placeholder="Search your tasks..."
+                            aria-label="Search tasks"
+                        >
+                    </div>
+
+                    <div class="filters" role="group" aria-label="Filter tasks">
+
+                        <button class="filter active" data-filter="all">
+                            All
+                        </button>
+
+                        <button class="filter" data-filter="active">
+                            Active
+                        </button>
+
+                        <button class="filter" data-filter="completed">
+                            Done
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="task-list" id="task-list" aria-live="polite"></div>
+
+                <div class="empty-state" id="empty-state">
+
+                    <div class="empty-art">🙄</div>
+
+                    <h3>Nothing on your list yet</h3>
+
+                    <p>Add your first task and make it happen.</p>
+
+                </div>
+
+            </section>
+
+            <aside class="side-column">
+
+                <section class="panel add-panel">
+
+                    <p class="eyebrow">NEW TASK</p>
+
+                    <h2>
+                        Add something<br>
+                        to your list<span class="brand-dot">.</span>
+                    </h2>
+
+                    <form id="task-form">
+
+                        <label for="task-title">Task name</label>
+
+                        <input
+                            id="task-title"
+                            maxlength="80"
+                            placeholder="e.g. Finish my portfolio"
+                            required
+                        >
+
+                        <label for="task-description">
+                            A little detail
+                            <span class="optional">OPTIONAL</span>
+                        </label>
+
+                        <textarea
+                            id="task-description"
+                            rows="3"
+                            maxlength="180"
+                            placeholder="What does success look like?"
+                        ></textarea>
+
+                        <label for="task-priority">Priority</label>
+
+                        <select id="task-priority">
+                            <option value="low">Low priority</option>
+                            <option value="medium" selected>Medium priority</option>
+                            <option value="high">High priority</option>
+                        </select>
+
+                        <button class="add-button" type="submit">
+                            <span>＋</span>
+                            Add task
+                            <span class="button-arrow">↗</span>
+                        </button>
+
+                    </form>
+
+                </section>
+
+                <section class="quote-card">
+
+                    <span class="quote-mark">“</span>
+
+                    <p id="quote-text">
+                        Great things are done by a series of small things brought together.
+                    </p>
+
+                    <small id="quote-author">— Vincent van Gogh</small>
+
+                    <button id="new-quote" type="button">
+                        Inspire me
+                        <span>↗</span>
+                    </button>
+
+                </section>
+
+            </aside>
+
+        </section>
+
+        <footer>
+
+            <span>✳ TASKFLOW</span>
+
+            <span>Built with focus, JavaScript</span>
+
+            <span>MAKE IT HAPPEN.</span>
+
+        </footer>
+
+    </main>
+
+    <script src="./app.js"></script>
+
+</body>
+</html>
